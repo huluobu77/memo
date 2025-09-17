@@ -14,7 +14,9 @@ var app = express();
 const cors = require('cors'); // 引入cors包
 
 // 使用cors中间件，允许所有来源的请求（仅用于测试和演示）
-app.use(cors());
+app.use(cors({
+  origin: 'https://68cab25fcebb176510d82c10--flourishing-youtiao-b999ac.netlify.app' // 例如：https://happy-torvalds.netlify.app
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
