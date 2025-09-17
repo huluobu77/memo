@@ -10,6 +10,12 @@ var usersRouter = require('./routes/users');
 var notesRouter = require('./routes/notes');
 
 var app = express();
+
+const cors = require('cors'); // 引入cors包
+
+// 使用cors中间件，允许所有来源的请求（仅用于测试和演示）
+app.use(cors());
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -42,6 +48,11 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+// 优先使用环境变量PORT，否则在本地开发时使用3000端口
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
 module.exports = app;
